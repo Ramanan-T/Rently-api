@@ -5,7 +5,7 @@ ActiveAdmin.register Code do
   #
   # Uncomment all parameters which should be permitted for assignment
   #
-  # permit_params :code, :smartlock_id
+ 
   #
   # or
   #
@@ -14,5 +14,10 @@ ActiveAdmin.register Code do
   #   permitted << :other if params[:action] == 'create' && current_user.admin?
   #   permitted
   # end
-  
+  permit_params :code,:smartlock_id
+
+  form do |f|
+    f.inputs :code ,:smartlock_id
+   actions
+  end
 end

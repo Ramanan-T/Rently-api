@@ -5,7 +5,7 @@ ActiveAdmin.register Property do
   #
   # Uncomment all parameters which should be permitted for assignment
   #
-  # permit_params :company_id, :property_name, :property_price, :property_desc, :property_address
+  permit_params :company_id, :property_name, :property_price, :property_desc, :property_address
   #
   # or
   #

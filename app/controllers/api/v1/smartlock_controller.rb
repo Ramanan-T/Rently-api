@@ -2,14 +2,14 @@ module Api
     module V1
     class SmartlockController < ApplicationController
         respond_to :json
-        skip_before_action :verify_authenticity_token ,:only => [:create]
+        skip_before_action :verify_authenticity_token ,:only => [:create,:destroy]
         
         def create
         @smartlock= Smartlock.new(params.require(:smartlock).permit(:serial_num,:property_id))
         @smartlock.property_id = nil
         
         if @smartlock.save
-            render json:{status: 'SUCCESS',message:"Saved Property",data:@smartlock},status: :ok
+            render json:{status: 'SUCCESS',message:"Saved Smartlock",data:@smartlock},status: :ok
             
         else
             render json: {errors:@smartlock.errors.full_messages}
@@ -45,6 +45,8 @@ module Api
 
         if @smartlock.destroy
             flash.alert = "Smartlock Removed"
+            render json:{status: 'SUCCESS',message:"Smartlock was deleted",data:@smartlock},status: :ok
+        else
             render json: {errors:@smartlock.errors.full_messages}
         end 
 

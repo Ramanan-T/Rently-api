@@ -5,7 +5,7 @@ ActiveAdmin.register Checkin do
   #
   # Uncomment all parameters which should be permitted for assignment
   #
-  # permit_params :renter_id, :property_id, :serial_code
+  permit_params :renter_id, :property_id, :serial_code
   #
   # or
   #

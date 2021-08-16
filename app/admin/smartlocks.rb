@@ -5,7 +5,7 @@ ActiveAdmin.register Smartlock do
   #
   # Uncomment all parameters which should be permitted for assignment
   #
-  # permit_params :serial_num, :property_id
+  permit_params :serial_num, :property_id
   #
   # or
   #
