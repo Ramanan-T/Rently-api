@@ -42,6 +42,8 @@ class AgentsController < ApplicationController
         redirect_to properties_path
     end
 
+    
+
 
 
 end

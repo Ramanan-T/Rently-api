@@ -10,7 +10,13 @@ before_save :check_company_id
 belongs_to :company ,optional:true
 has_many :properties, through: :company
  
-         
+
+def self.authenticate(email, password)
+  user = Agent.find_for_authentication(email: email)
+  user&.valid_password?(password) ? user : nil
+end
+
+        
         private 
         def send_subagent_email
           if self.role=="Non-admin"

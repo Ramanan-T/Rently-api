@@ -3,7 +3,7 @@ module Api
     class SmartlockController < ApplicationController
         respond_to :json
         skip_before_action :verify_authenticity_token ,:only => [:create,:destroy]
-        
+        before_action :authenticate_agent!
         def create
         @smartlock= Smartlock.new(params.require(:smartlock).permit(:serial_num,:property_id))
         @smartlock.property_id = nil
