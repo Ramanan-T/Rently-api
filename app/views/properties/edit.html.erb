@@ -1,0 +1,39 @@
+
+<div class="card" style="display:inline-block;margin-left:500px;margin-top:50px;padding:30px">
+<%= form_for @property , url: property_path(@property) do |form| %>
+  <h2>Add a new Property here</h2>
+  <div>
+    <%= form.label :property_name %><br>
+    <%= form.text_field :property_name %>
+  </div>
+
+  <div>
+    <%= form.label :property_desc%><br>
+    <%= form.text_area :property_desc %>
+  </div>
+
+  <div>
+    <%= form.label :property_price %><br>
+    <%= form.text_field :property_price%>
+  </div>
+  <div>
+    <%= form.label :property_address%><br>
+    <%= form.text_field :property_address%>
+  </div>
+
+
+ 
+
+  <%= form.label :Addimages,class:"sr-only"%>
+ <%= form.file_field :images, multiple: true ,class:"form-control"%>
+<br>
+  
+<div>
+  
+    <%= form.submit "Create Property" , class: 'btn btn-primary btn-sm' %>
+  </div>
+
+<% end %>
+
+  
+  

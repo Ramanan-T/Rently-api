@@ -1,0 +1,170 @@
+<html>
+<style>
+
+body{
+    background-image: image-url('hero2x.jpg');
+}
+.nav-link {
+color:white;
+}
+.navbar-custom {
+    background-color: #253E7E;
+    font-color:white;
+}
+.content{
+    
+}
+
+</style>
+<% if agent_signed_in? %>
+<%= render "layouts/navbar"%>
+<div style="display:block;width:100%;height:300px;padding:10px;padding-left:0px;margin-top:0px;padding-top:0px;">
+<%= image_tag("logos/rental.jpg",height:500,width:1400)  %>
+<br>
+<br>
+<br>
+<br>
+<br><br><br><br><br><br>
+</div>
+<div class="card" style="display:inline-block;padding:20px;margin-left:80px;margin-top:40px; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);">
+<center><%= image_tag("logos/checkin.jpg", height:100 , width:100,:style => "border-radius:60px")  %></center>
+<br>
+<ul>
+<li>Prime Location </li>
+<br>
+<li> Reduces Showing Costs</li>
+<br>
+<li> Schedule a Showing based <br>on your own time</li>
+<br>
+<li> Browse through the various properties </li>
+<br>
+<li> No more hassle with owners </li>
+</ul>
+</div>
+<div class="card" style="display:inline-block;padding:20px;margin-left:100px;margin-top:40px; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);">
+<center><%= image_tag("logos/security.png", height:100 , width:150,:style => "border-radius:60px")  %></center>
+<br>
+<ul>
+<li>Prime Location </li>
+<br>
+<li> Secured Login</li>
+<br>
+<li> State of the art Systems</li>
+<br>
+<li> Customisable codes</li>
+<br>
+<li> Affordable Houses</li>
+</ul>
+</div>
+<%else%>
+<%if renter_signed_in?%>
+<%= render "layouts/navbar"%>
+
+
+<div style="display:block;width:100%;height:300px;padding:10px;padding-left:0px;margin-top:0px;padding-top:0px;">
+<%= image_tag("logos/rental.jpg",height:500,width:1400)  %>
+</div>
+
+<br>
+<br>
+<br>
+<br>
+<br><br><br><br><br>
+<div class="card" style="display:inline-block;padding:20px;margin-left:80px;margin-top:40px; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);">
+<center><%= image_tag("logos/checkin.jpg", height:100 , width:100,:style => "border-radius:60px")  %></center>
+<br>
+<ul>
+<li>Prime Location </li>
+<br>
+<li> Reduces Showing Costs</li>
+<br>
+<li> Schedule a Showing based <br>on your own time</li>
+<br>
+<li> Browse through the various properties </li>
+<br>
+<li> No more hassle with owners </li>
+</ul>
+</div>
+<div class="card" style="display:inline-block;padding:20px;margin-left:100px;margin-top:40px; box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);">
+<center><%= image_tag("logos/security.png", height:100 , width:150,:style => "border-radius:60px")  %></center>
+<br>
+<ul>
+<li>Prime Location </li>
+<br>
+<li> Secured Login</li>
+<br>
+<li> State of the art Systems</li>
+<br>
+<li> Customisable codes</li>
+<br>
+<li> Affordable Houses</li>
+</ul>
+</div>
+<%else%>
+<div class="navbar-custom">
+<nav class="navbar navbar-expand-lg navbar-custom bg-transparent nav-pills">
+  <div class="container-fluid">
+    
+    <%= link_to "Home", welcome_index_path, :class => 'navbar-brand active' ,style:"color:white" %>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-mdb-toggle="collapse"
+      data-mdb-target="#navbarText"
+      aria-controls="navbarText"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <i class="fas fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarText">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      <li class="nav-item">
+      
+     <b> <%= link_to "Add company", new_company_path ,:class => 'nav-link' %></b>
+    
+      </li>
+      <li class="nav-item">
+      <b> <%= link_to "New Renter", new_renter_registration_path ,:class => 'nav-link' %></b>
+      </li>
+      </ul>
+      <span class="navbar-text">
+      
+      <%=link_to "Sign in",login_index_path ,class:"btn btn-danger btn-sm" %>
+      </span>
+</div>
+</div>
+</div>
+<div class="content">
+<%= image_tag('hero2x.jpg', style: "height:700px; width: 100%;position:absolute;z-index:-1") %>
+
+<span style="z-index:1000;font-size:50px;color:white;padding:20px"><b>Innovative Self-Touring <br/></b></span>
+<span style="z-index:1000;font-size:50px;color:white;padding:20px"> <b>Technology</b></span>
+</div>
+<div style="font-size:20px;color:white;padding:20px">
+Instantly tour a vacant property safely and securely<br> with Rently's Street to Suite™ platform
+
+</div>
+<div style="display:flex">
+<form style="padding:20px">
+
+<input type="search" name="seacrhbar" class="form-control-lg input-sm" placeholder="Enter address, zipcode or street name"> </input>
+<button class="btn btn-danger"> Self tour </button>
+
+</form>
+</div>
+<br>
+<br>
+
+<br>
+<br>
+<div class="footer">
+<a style="color:white"><%= image_tag('Rently/image01.svg', style: "fill:white;padding:10px") %></a>
+<%= image_tag('Rently/image02.svg', style: "padding:10px") %>
+<%= image_tag('Rently/image03.svg', style: "padding:10px") %>
+<%= image_tag('Rently/image04.svg', style: "padding:10px") %>
+<div>
+<%end%>
+<%end%>
+
+</html>

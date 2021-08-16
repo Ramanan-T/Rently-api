@@ -1,0 +1,92 @@
+<html>
+<style>
+.img{
+  display:inline;
+}
+</style>
+<%= render "layouts/navbar"%>
+
+<br>
+<% if agent_signed_in? %>
+<div style="margin-left:5px">
+<%= link_to 'Add a new property',new_property_path, class:"btn btn-primary btn-sm"%>
+</div>
+<br>
+<% @property.each do |post| %>
+  
+  <div class="card" style="margin-left:20px;margin-top:10px;margin-right:20px;padding:10px">
+  
+  <%= image_tag(post.images[0], height:100 , width:150)  %>
+  <span class="elements" , style="display:inline">
+  Property Name:
+  <%= post.property_name %>
+  </span>
+  <span class="elements">
+   <b>Property Price: </b>
+   <%= post.property_price %>
+  </span>
+  <br>
+  <span class="elements">
+   <b>Property address: </b>
+   <%= post.property_address%>
+  </span>
+
+  <br>
+  <% @smart= Smartlock.where(:property_id => post.id)%>
+  <div class="flex-inline ">
+  <%= link_to 'View Property',property_path(post.id), class:"btn btn-primary btn-sm"%>
+  
+    
+    <%  if @smart.blank? %>
+    <%= link_to 'Assign Smartlock', {:controller => "smartlock", :action => "index", :property_id => post.id },class:"btn btn-info btn-sm"%> 
+    <% else %>
+    <div style="display:inline-block">
+   <%= button_to "Remove Smartlock",{:controller => "properties", :action => "remove_smartlock", :property_id => post.id },class:"btn btn-danger btn-sm" ,style:"display:inline;"%>
+   </div> 
+   <%end%>
+   <%= link_to 'Edit', edit_property_path(post),class:"btn btn-primary btn-sm" %>
+    <%= link_to 'Add Code', {:controller => "codes", :action => "new", :property_id => post.id },class:"btn btn-info btn-sm"%> 
+    <%= link_to 'View Codes', {:controller => "codes", :action => "index", :property_id => post.id },class:"btn btn-info btn-sm"%> 
+    <%= link_to 'Checkin History',{:controller=>"checkin", :action=>"index",:property_id=>post.id},class:"btn btn-info btn-sm"%>
+    <br>
+    <br>
+    <%if current_agent.role=="Admin" %>
+    <span> <%= button_to "Delete Property", post, :method=>:delete, :class=>:destroy ,class:"btn btn-danger btn-sm" %></span>
+    <%end%>
+    </div>
+</div>
+<%end%>
+<%end%>
+<% if renter_signed_in? %>
+<% @property.each do |post| %>
+  <div class="card" style="margin-left:20px;margin-top:10px;margin-right:20px;padding:10px">
+    
+  <%= image_tag(post.images[0], height:100 , width:150)  %>
+  <span class="elements" , style="display:inline">
+  Property Name:
+  <%= post.property_name %>
+  </span>
+  <span class="elements">
+   <b>Property Price:  </b>
+   <%= post.property_price %> $
+  </span>
+  <br>
+  <span class="elements">
+   <b>Property address: </b>
+   <%= post.property_address %> 
+  </span>
+  
+  <div class="flex-inline ">
+    <%= link_to 'Show',property_path(post.id), class:"btn btn-primary btn-sm"%>
+    <%= link_to 'Request Check in', {:controller => "checkin", :action => "new", :property_id => post.id },class:"btn btn-info btn-sm" %>
+  </div>
+  </div>
+
+<%end%>
+<%end%>
+
+
+
+
+  
+  </html>

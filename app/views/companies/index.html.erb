@@ -1,0 +1,70 @@
+
+<%= render "layouts/navbar"%>
+<% if current_agent.role=="Admin" %>
+<div style="display:inline-block;margin-left:350px;padding:20px;margin-top:20px;width:50%">
+<table class="table">
+  <tr>
+    <th class= "thead-dark">Company Name</th>
+    <th class= "thead-dark">Company Contact</th>
+    <th class= "thead-dark">Company Address</th>
+    
+    
+  </tr>
+  
+ 
+
+  <tr>
+    <td><%= @companies.company_name %></td>
+    <td><%= @companies.company_contact %></td>
+    <td><%= @companies.company_address %></td>
+    
+  </tr>
+
+</table>
+<table class="table">
+  <tr>
+    <th class= "thead-dark">Sub Agent Name</th>
+    <th class= "thead-dark">Sub Agent Contact</th>
+    <th class= "thead-dark"></th>
+    
+    
+  </tr>
+  
+ 
+  <% @agents.each do |post| %>
+  <tr>
+    <td><%= post.name %></td>
+    <td><%= post.email %></td>
+   <td><%= link_to "Destroy", admin_destroy_user_path(post), method: :delete, data: { confirm: "You sure?" } ,class:"btn btn-danger btn-small"%></td>
+  </tr>
+<%end%>
+</table>
+
+<span>
+<td><%= link_to 'Add a new agent',addagents_path,class:"btn btn-primary btn-sm"%></td>
+</span> 
+
+
+<%else%>
+<table class="table">
+  <tr>
+    <th class= "thead-dark">Name</th>
+    <th class= "thead-dark">Contact</th>
+    <th class= "thead-dark"></th>
+    
+    
+  </tr>
+  
+ 
+
+  <tr>
+    <td><%= @companies.company_name %></td>
+    <td><%= @companies.company_contact %></td>
+    <td><%= @companies.company_address %></td>
+    
+  </tr>
+
+</table>
+<%end%>
+
+</div>

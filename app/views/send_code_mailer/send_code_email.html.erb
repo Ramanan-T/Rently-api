@@ -1,0 +1,20 @@
+ <!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <p><h2><b>Hello Renter,</b></h2> </p>
+    <br>
+    <p>The property you wish to enter is <%= @property.property_name %></p>
+    <br>
+    <p>
+    The Code for Checkin is :<br>
+    <b><%= @property.smartlock.codes.first.code %></b>
+    
+   
+  
+    </p>
+    
+  </body>
+</html>

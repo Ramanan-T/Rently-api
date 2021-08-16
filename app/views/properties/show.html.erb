@@ -1,0 +1,50 @@
+<%= render "layouts/navbar"%>
+<div style="padding:20px;margin-top:30px;">
+<p>
+  <strong>Property Name:</strong>
+  <%= @property.property_name %>
+</p>
+ 
+<p>
+  <strong>Property Description:</strong>
+  <%= @property.property_desc %>
+</p>
+
+<p>
+  <strong>Property Price:</strong>
+  <%= @property.property_price %>$ per night
+</p>
+
+
+
+<p>
+  <strong>Property Address:</strong>
+  <%= @property.property_address %>
+</p>
+
+<%(0...@property.images.count).each do |img| %>
+
+   <a><%= image_tag(@property.thumbnail(img), class: "open-AddImgDialog", id:"test",  data: { target: "#myModal", toggle: "modal"})  %></a>
+   <div class="modal fade" id="imagemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+   <div class="modal-dialog">
+   <div class="modal-content">
+   <div class="modal-header">
+   <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+   <h4 class="modal-title" id="myModalLabel">Image</h4>
+   </div>
+   <div class="modal-body">
+    
+   
+    <%= image_tag(@property.thumbnail(img)) %>
+    
+    </div>
+      </div>
+      </div>
+      </div>
+
+      <%end%>     
+<br><br>
+
+<%= link_to 'Back', properties_path, class: "btn btn-danger btn-sm" %>
+</div>
+
