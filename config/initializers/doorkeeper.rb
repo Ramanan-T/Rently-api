@@ -15,6 +15,7 @@ Doorkeeper.configure do
 
   resource_owner_from_credentials do |_routes|
     Agent.authenticate(params[:email], params[:password])
+   
   end
 
   
