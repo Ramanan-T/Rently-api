@@ -9,7 +9,8 @@ Rails.application.routes.draw do
  
   namespace 'api' do
     namespace 'v1' do
-      
+      resources:agents
+      get '/addsubagents', action: :addagents,controller: :agents, as: :addagents
       resources:smartlock
     end
   end

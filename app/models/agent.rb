@@ -28,8 +28,10 @@ has_many :properties, through: :company
         # modify code after adding flag variable to company table
           def check_company_id
             if self.company_id.blank?
-                self.company_id = Company.first.id
+                self.company_id = Company.where(:flag=>0).first.id
                 self.role="Admin"
             end 
           end
+
+          
 end

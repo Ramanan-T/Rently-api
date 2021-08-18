@@ -14,5 +14,8 @@ ActiveAdmin.register Checkin do
   #   permitted << :other if params[:action] == 'create' && current_user.admin?
   #   permitted
   # end
-  
+  form do |f|
+    f.inputs :renter_id,:property_id,:serial_code
+    actions
+    end
 end

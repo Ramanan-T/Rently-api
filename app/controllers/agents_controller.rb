@@ -11,8 +11,14 @@ class AgentsController < ApplicationController
             @agent.password_confirmation=@agent.password
         end 
 
+        
+
        
         if @agent.save
+            if @agent.role=="Admin"
+                @company= Company.find(params[:company_id])
+              @company.update(:flag=>1)
+            end 
             redirect_to properties_path
         else
             flash.alert ="Sub agent was not created"
