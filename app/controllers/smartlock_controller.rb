@@ -6,7 +6,7 @@ class SmartlockController < ApplicationController
     def create
         @smartlock= Smartlock.new(params.require(:smartlock).permit(:serial_num,:property_id))
         @smartlock.property_id = nil
-        
+        @smartlock.company_id= current_agent.company_id
         if @smartlock.save
             redirect_to properties_path
         else
