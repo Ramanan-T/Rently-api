@@ -5,7 +5,7 @@ ruby '3.0.0'
 gem 'devise'
 gem 'image_processing', '~> 1.2'
 gem 'activeadmin'
-
+gem 'rexml', '~> 3.2', '>= 3.2.4'
 gem 'doorkeeper'
 gem 'bootstrap', '~> 4.0'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
