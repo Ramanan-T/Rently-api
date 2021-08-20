@@ -45,5 +45,14 @@ class SmartlockController < ApplicationController
 
     end
 
+
+    #displays all the smartlocks owned by the company
+    def display
+        @smartlocks = Smartlock.where(:company_id => current_agent.company_id)
+        @company = Company.find(current_agent.company_id)
+
+
+    end
+
     
 end

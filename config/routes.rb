@@ -11,7 +11,10 @@ Rails.application.routes.draw do
     namespace 'v1' do
       resources:agents
       get '/addsubagents', action: :addagents,controller: :agents, as: :addagents
-      resources:smartlock
+      resources:smartlock do
+        get :display, on: :collection
+      end
+      
     end
   end
   devise_for :renters
@@ -39,7 +42,11 @@ Rails.application.routes.draw do
 
   resources:smartlock do
     delete '/agents/:id' => 'devise/sessions#destroy'
+    
+      get :display, on: :collection
+     
   end
+  # get 'smartlock/display(.:format)',action: :display ,controller: :smartlock ,as:display
   resources:codes
   get 'agents/:id' => 'agents#destroy', :via => :delete, :as => :admin_destroy_user
   match 'agents/:id' , to: "agents#destroy" , via: [:delete]

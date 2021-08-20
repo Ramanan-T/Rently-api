@@ -52,6 +52,16 @@ module Api
 
     end
 
+    def display
+        @smartlocks = Smartlock.where(:company_id => current_agent.company_id)
+        @company = Company.find(current_agent.company_id)
+
+        render json:{status: 'SUCCESS',message:"Smartlock under the Company",data:@smartlocks},status: :ok
+
+
+    end
+
+
     
    
 

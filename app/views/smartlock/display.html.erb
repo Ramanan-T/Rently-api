@@ -1,0 +1,26 @@
+<%= render "layouts/navbar"%>
+
+<div style="display:inline-block;margin-left:350px;padding:20px;margin-top:20px;width:50%">
+
+<table class="table">
+  <tr>
+    <th class= "thead-dark">Smartlock Serial Number</th>
+    <th class= "thead-dark">Company Name</th>
+    <th class= "thead-dark"></th>
+    
+    
+  </tr>
+  
+ 
+  <% @smartlocks.each do |post| %>
+  <tr>
+    <td><%= post.serial_num %></td>
+    <td><%= @company.company_name %></td>
+   
+  </tr>
+<%end%>
+</table>
+
+
+
+</div>
