@@ -21,7 +21,10 @@ class PropertiesController < ApplicationController
     end
 
     def index
+        
         if agent_signed_in?
+        @company = Company.find(current_agent.company_id)
+        @company.update(:flag=>1)
         @property= Property.where(:company_id=>current_agent.company_id);
         else
             @property=Property.all

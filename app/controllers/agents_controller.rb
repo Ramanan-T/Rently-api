@@ -15,9 +15,10 @@ class AgentsController < ApplicationController
 
        
         if @agent.save
+            
             if @agent.role=="Admin"
                 @company= Company.find(params[:company_id])
-              @company.update(:flag=>1)
+                @company.set(:flag=>1)
             end 
             redirect_to properties_path
         else
