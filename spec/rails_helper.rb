@@ -36,13 +36,20 @@ rescue ActiveRecord::PendingMigrationError => e
   puts e.to_s.strip
   exit 1
 end
+
+Shoulda::Matchers.configure do |config|
+  config.integrate do |with|
+    with.test_framework :rspec
+    with.library :rails
+  end
+end
 RSpec.configure do |config|
-  config.include(Shoulda::Callback::Matchers::ActiveModel)
+  # config.include(Shoulda::Callback::Matchers::ActiveModel)
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.include Capybara::DSL, :type => :request
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
   
-  
+  config.include(Shoulda::Callback::Matchers::ActiveModel)
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
   # instead of true.

@@ -12,12 +12,13 @@
 # the additional setup, and require it from the spec files that actually need
 # it.
 #
-require 'shoulda/matchers'
 
 
+require "shoulda/matchers"
 
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
+  # config.include(Shoulda::Callback::Matchers::ActiveModel)
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
   # assertions if you prefer.

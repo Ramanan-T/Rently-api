@@ -60,11 +60,8 @@ RSpec.describe Agent, type: :model do
 
 
   context "Callbacks" do  
-    
-      it { is_expected.to callback(:send_subagent_email).after(:save) }
-    # expect(@agent).to receive(:send_subagent_email)
-  
-
-    
+   
+      it { is_expected.to callback(:send_subagent_email).after(:create) }
+     
   end
 end
