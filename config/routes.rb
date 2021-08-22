@@ -22,7 +22,9 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
   devise_for :agents
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  resources:companies
+  resources:companies do
+    get '/admin_agent', action: :admin_agent,controller: :companies, as: :admin_agent
+  end 
   resources:welcome
   resources:login do
   get '/index' => 'login#index',:as=> 'login_index'
@@ -39,7 +41,7 @@ Rails.application.routes.draw do
   match '/properties/:id(.:format)' , to: "properties#destroy" , via: [:delete]
   
   root to: "welcome#index"
-
+  # resources:checkin
   resources:smartlock do
     delete '/agents/:id' => 'devise/sessions#destroy'
     

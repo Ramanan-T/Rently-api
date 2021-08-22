@@ -6,9 +6,10 @@ class Agent < ApplicationRecord
 
 
          after_create:send_subagent_email
-before_save :check_company_id 
+ 
 belongs_to :company ,optional:true
 has_many :properties, through: :company
+validates :role,:name , presence:true
  
 
           def self.authenticate(email, password)
@@ -25,15 +26,7 @@ has_many :properties, through: :company
           end 
         end
 
-        # modify code after adding flag variable to company table
-          def check_company_id
-            if self.company_id.blank?
-                @company=self.company_id = Company.where(:flag=>0).first.id
-                @company.update(:flag=>1)
-
-                self.role="Admin"
-            end 
-          end
+        
 
           
 end

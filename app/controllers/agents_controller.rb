@@ -4,26 +4,25 @@ class AgentsController < ApplicationController
         @agent =Agent.new
     end 
     def create
-        @agent= Agent.new(params.require(:agent).permit(:name,:email,:phone,:company_id,:role))
+        @agent= Agent.new(params.require(:agent).permit(:name,:email,:phone,:company_id,:role,:password,:password_confirmation))
         
         if @agent.role=="Non-admin"
             @agent.password= @agent.email.split('@',2)[0]
             @agent.password_confirmation=@agent.password
         end 
-
-        
-
-       
         if @agent.save
-            
-            if @agent.role=="Admin"
-                @company= Company.find(params[:company_id])
-                @company.set(:flag=>1)
-            end 
-            redirect_to properties_path
+            redirect_to login_index_path
         else
-            flash.alert ="Sub agent was not created"
+
+            if @agent.role=="Non-admin"
+            flash.alert ="Sub Agent was not created"
             redirect_to companies_path
+
+            else
+                flash.alert ="Agent was not created"
+                redirect_to login_index_path
+
+            end
         end 
 
 
@@ -42,12 +41,7 @@ class AgentsController < ApplicationController
         end
     end 
 
-    def delete_image_attachment
-        @image = ActiveStorage::Attachment.find(params[:id])
-        @image.purge
-
-        redirect_to properties_path
-    end
+    
 
     
 

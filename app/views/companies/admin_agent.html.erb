@@ -1,0 +1,36 @@
+<html>
+</body>
+<div class="card" style="display:inline-block;margin-left:150px;margin-top:30px;padding:30px">
+<span><b>Agent Signup</b> </span>
+<br><br>
+<%= form_for :agent, url:'/agentscreate' do |f| %>
+<%= f.label :name ,class: "label"%><br>
+<%= f.text_field :name, class: "input"%><br>
+<%= f.label :phone, class: "label"%><br>
+<%= f.text_field :phone, class: "input"%><br>
+
+
+
+<%= f.label :email , class: "label"%><br/>
+<%= f.text_field :email, autofocus: true, autocomplete: "email", class: "input" %><br>
+<div class="field">
+    <%= f.label :password %>
+    <% if @minimum_password_length %>
+    <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <% end %><br />
+    <%= f.password_field :password, autocomplete: "new-password" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password_confirmation %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+  </div>
+
+<%= f.hidden_field :role, value:"Admin"  %>
+<%= f.hidden_field :company_id, value: params[:company_id] %><br>
+<%= f.submit "Create", class: "btn btn-primary" %>
+<% end %>
+</div>
+
+</body>
+</html>

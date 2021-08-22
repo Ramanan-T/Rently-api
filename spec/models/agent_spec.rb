@@ -2,6 +2,9 @@ require 'rails_helper'
 
 RSpec.describe Agent, type: :model do
   # pending "add some examples to (or delete) #{__FILE__}"
+  
+    dummy_pwd = 'password'
+    dummy_email = 'tester@example.com'
   before do
     @company=FactoryBot.create(:company)
   end
@@ -10,4 +13,58 @@ RSpec.describe Agent, type: :model do
     result = FactoryBot.create(:agent,company_id:@company.id)
     expect(result).to be_valid
   end 
+
+  context "Agent Validations" do
+
+    it "has a email" do
+      @agent = FactoryBot.build(:agent,email:"sdfgfg",company_id:@company.id)
+      @agent.email = ""
+      expect(@agent).to_not be_valid
+      @agent = FactoryBot.build(:agent,company_id:@company.id)
+      expect(@agent).to be_valid
+    end
+
+    it "has valid format" do
+      @agent = FactoryBot.build(:agent,company_id:@company.id,email:"admin..")
+    expect(@agent).to_not be_valid
+    @agent = FactoryBot.build(:agent,company_id:@company.id,email:dummy_email)
+    expect(@agent).to be_valid
+  end
+
+  it "has password at least 6 characters long" do
+    @agent = FactoryBot.build(:agent,company_id:@company.id,password:"pass",password_confirmation:"pass")
+    expect(@agent).to_not be_valid
+    @agent = FactoryBot.build(:agent,company_id:@company.id,password:"password",password_confirmation:"password")
+    expect(@agent).to be_valid
+  end
+
+ 
+
+  it "has a name" do
+    @agent = FactoryBot.build(:agent,company_id:@company.id,name:nil)
+    expect(@agent).to_not be_valid
+    @agent = FactoryBot.build(:agent,company_id:@company.id,name:"Anush")
+    expect(@agent).to be_valid
+  end
+
+  it "has a role" do
+    @agent = FactoryBot.build(:agent,company_id:@company.id,role:nil)
+    expect(@agent).to_not be_valid
+    @agent = FactoryBot.build(:agent,company_id:@company.id,role:"Admin")
+    expect(@agent).to be_valid
+  end
+
+
+
+  end
+
+
+  context "Callbacks" do  
+    
+      it { is_expected.to callback(:send_subagent_email).after(:save) }
+    # expect(@agent).to receive(:send_subagent_email)
+  
+
+    
+  end
 end

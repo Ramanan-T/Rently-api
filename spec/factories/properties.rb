@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :property do
-    property_name {"Sevilla Home"}
-    property_address {"ddvdv"}
+    property_name {"Sevilla Homes"}
+    property_address {"Sevilla Main road"}
     property_price {"1233"}
     property_desc {"kdfjfkdf"}
     company_id {120}

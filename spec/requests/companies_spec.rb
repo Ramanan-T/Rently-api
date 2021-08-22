@@ -25,6 +25,23 @@ RSpec.describe "Companies", type: :request do
     get new_company_path
     expect(response).to render_template 'companies/new'
     end 
-  end 
+  end  
+
+  context "Redirection after company creation" do
+
+    it "Shows the agent creation form" do
+      get new_company_path
+      visit new_company_path
+      within("#form") do
+      fill_in 'Company name', with:"Rently9"
+      fill_in 'Company contact', with:"871234"
+      fill_in 'Company address', with:"Cakebee"
+      
+      click_button 'Create Company'
+    end
+    expect(response).to render_template "companies/admin_agent"
+    end 
+
+  end
    
 end

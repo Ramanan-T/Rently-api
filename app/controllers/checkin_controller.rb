@@ -24,7 +24,7 @@ class CheckinController < ApplicationController
             
             
         else
-            flash.now[:notice] = "Wrong Smartlock Serial number "
+            flash.now[:notice] = "Wrong Smartlock Serial number"
             render 'new'
         end 
 
@@ -36,7 +36,13 @@ class CheckinController < ApplicationController
     end
 
     def index
+
+        if agent_signed_in?
         @checkin = Checkin.where(:property_id => params[:property_id]).includes(:property,:renter)
+
+        else
+            redirect_to properties_path
+        end 
         
     end
 end
