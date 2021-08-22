@@ -16,7 +16,7 @@ class CompaniesController < ApplicationController
         
         @company = Company.new(params.require(:company).permit(:company_name,:company_contact,:company_address,:flag))
         
-        @company.flag=0;
+        
         if @company.save
         redirect_to company_admin_agent_path(:company_id =>@company.id)
 

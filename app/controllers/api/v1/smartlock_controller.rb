@@ -3,7 +3,8 @@ module Api
     class SmartlockController < ApplicationController
         respond_to :json
         # skip_before_action :verify_authenticity_token ,:only => [:create,:destroy]
-        before_action :doorkeeper_authorise!
+        before_action :doorkeeper_authorize!
+
         def create
         @smartlock= Smartlock.new(params.require(:smartlock).permit(:serial_num,:property_id))
         @smartlock.property_id = nil
@@ -18,26 +19,34 @@ module Api
     
 
     def show
-        smartlock= Smartlock.find(params[:id])
-        respond_with smartlock
-    
+        if smartlock= Smartlock.find(params[:id])
+        render json:{status: 'SUCCESS' ,message:"Loaded Smartlock Index ",data: smartlock},status: :ok
+        else
+            render json: {errors:smartlock.errors.full_messages}
+        end
     end
     def index
         smartlock= Smartlock.where(:property_id=>nil)
+
+        if smartlock==nil
+            render json:{status:'SUCCESS', message:"No smartlocks were found"},status: :ok
+
+        else
         render json:{status: 'SUCCESS' ,message:"Loaded Smartlock Index ",data: smartlock},status: :ok
-        
+        end 
     end
     
 
 
     def update
         @post = Smartlock.where(:property_id=>nil).first
-        @post.update(property_id :property_id)
+        if @post.update(property_id :property_id)
 
+        render json:{status: 'SUCCESS' ,message:"Loaded Smartlock Index ",data: @post},status: :ok
 
-        
-        redirect_to smartlocks_path
-        
+        else
+            render json:{status: 'Failure' ,message:"Smartlock not updated"},status: :ok
+        end
     end 
 
     def destroy
