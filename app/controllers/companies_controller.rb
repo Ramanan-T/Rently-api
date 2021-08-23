@@ -14,7 +14,7 @@ class CompaniesController < ApplicationController
     end 
     def create 
         
-        @company = Company.new(params.require(:company).permit(:company_name,:company_contact,:company_address,:flag))
+        @company = Company.new(params.require(:company).permit(:company_name,:company_contact,:company_address))
         
         
         if @company.save

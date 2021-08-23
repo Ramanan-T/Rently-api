@@ -1,7 +1,4 @@
-<html>
-<style>
-html, body { background: #253E7E; }
-</style>
+
 <%if renter_signed_in? %>
 <%= render "layouts/navbar"%>
 <% @property = Property.find(params[:property_id]) %>

@@ -27,11 +27,13 @@ RSpec.describe "Api V1 Smartlocks", type: :request,oauth: true do
 		  expect(response).to be_successful
 		end	
 
+
+		#Checking json Response here
 		it 'Shows the details of Specific Smartlock' do
 			@expected = { 
         :serial_num  => @smartlock.serial_num,
         :company_id     => @company.id,
-        :property_id   => "null"
+        
 			}.to_json
 			get api_v1_smartlock_path(:id=>@smartlock.id),headers: { 'Authorization': 'Bearer ' + token.token }
 			expect(response).to be_successful

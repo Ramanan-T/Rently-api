@@ -9,24 +9,28 @@ RSpec.describe "Companies", type: :request do
   end
   
  
-  context "Company Index page" do
-    it "Shows the Company information " do
+  
+    it "Shows the Company information With subagent " do
         sign_in @agent 
-        get companies_url
-        expect(response).to render_template 'companies/index'
+        get companies_path
+        expect(response.body).to include("Sub Agent Name")
     end
 
-
-  end 
-
-  context " Company new Page" do
-    it "New Company path" do
-
+    it "Company information without sub agent" do
+      sign_in @agents 
+      get companies_path
+      expect(response.body).to_not include("Sub Agent Name")
+    end
+  
+    it "New Company " do
+    
     get new_company_path
     expect(response).to render_template 'companies/new'
     end 
-  end  
+   
 
+
+  #checking the action after filling the company creation form 
   context "Redirection after company creation" do
 
     it "Shows the agent creation form" do

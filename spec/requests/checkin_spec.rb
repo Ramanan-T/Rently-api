@@ -11,7 +11,7 @@ RSpec.describe "Checkins", type: :request do
     @checkin= FactoryBot.create(:checkin,:serial_code=>@code.code,:property_id=>@property.id,:renter_id=>@renter.id)
     @agent= FactoryBot.create(:agent,company_id:@company.id)
   end
-  context "property Checkin " do
+  context "Renter Property Checkin" do
     it "Request Checkin with correct code" do
     sign_in @renter
     get checkin_new_path(:property_id=>@property.id)
@@ -33,7 +33,7 @@ RSpec.describe "Checkins", type: :request do
       end
   end
 
-  context "Checkins index page" do
+  
     it "List of checkins for the property" do
       sign_in @agent
       get checkin_path(:property_id=>@property.id)
@@ -47,5 +47,5 @@ RSpec.describe "Checkins", type: :request do
     end 
 
 
-  end
+  
 end

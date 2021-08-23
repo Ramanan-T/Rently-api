@@ -40,9 +40,9 @@ module Api
 
     def update
         @post = Smartlock.where(:property_id=>nil).first
-        if @post.update(property_id :property_id)
+        if @post.update(:property_id  => params[:property_id])
 
-        render json:{status: 'SUCCESS' ,message:"Loaded Smartlock Index ",data: @post},status: :ok
+        render json:{status: 'SUCCESS' ,message:"Updated the smartlock ",data: @post},status: :ok
 
         else
             render json:{status: 'Failure' ,message:"Smartlock not updated"},status: :ok

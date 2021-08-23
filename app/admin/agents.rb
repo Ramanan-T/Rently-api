@@ -6,6 +6,9 @@ ActiveAdmin.register Agent do
   # Uncomment all parameters which should be permitted for assignment
   #
   permit_params :email, :password, :name, :role,:phone, :company_id
+  filter :email
+  filter :name
+  filter :phone
   #
   # or
   #

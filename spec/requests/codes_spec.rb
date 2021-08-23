@@ -21,5 +21,11 @@ RSpec.describe "Codes", type: :request do
       get codes_path(:property_id=>@property.id)
       expect(response).to render_template 'codes/index'
   end 
+
+  it "Delete the Code" do
+    sign_in @agent
+    delete code_path(:id=>@code.id)
+    expect(response).to redirect_to properties_path
+  end 
   end
 end

@@ -3,7 +3,11 @@ class Agent < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+         validates :phone,
+         :numericality => true,
+         :length => { :minimum => 10, :maximum => 10 }
 
+         validates_uniqueness_of :email , :message=>"Email ID already taken"
 
          after_create:send_subagent_email
  

@@ -33,7 +33,12 @@ class PropertiesController < ApplicationController
     def destroy
         @property = Property.find(params[:id])
         if @property.destroy
+            flash.alert="Property was destroyed"
         redirect_to properties_path
+        else
+            
+            flash.alert="Property was not destroyed"
+            redirect_to properties_path
         end 
     end
 
@@ -47,7 +52,8 @@ class PropertiesController < ApplicationController
         if @smartlock.update(:property_id=>params[:property_id])
             redirect_to  properties_path
         else 
-            render 'index'
+            flash.alert="Smartlock was not assigned"
+            redirect_to smartlock_path
         end 
     end
     def edit
