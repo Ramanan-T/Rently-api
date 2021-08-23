@@ -9,7 +9,7 @@ RSpec.describe "Codes", type: :request do
       @code = FactoryBot.create(:code,:smartlock_id=>@smartlock.id)
       @agent= FactoryBot.create(:agent,company_id:@company.id)
   end 
-  context "Get new page of Codes" do
+  
     it "New page for code" do
         sign_in @agent
         get new_code_path
@@ -27,5 +27,5 @@ RSpec.describe "Codes", type: :request do
     delete code_path(:id=>@code.id)
     expect(response).to redirect_to properties_path
   end 
-  end
+  
 end

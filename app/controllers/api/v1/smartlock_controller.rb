@@ -6,8 +6,9 @@ module Api
         before_action :doorkeeper_authorize!
 
         def create
-        @smartlock= Smartlock.new(params.require(:smartlock).permit(:serial_num,:property_id))
+        @smartlock= Smartlock.new(params.permit(:serial_num,:property_id,:company_id))
         @smartlock.property_id = nil
+        @smartlock.company_id= current_agent.company_id
         
         if @smartlock.save
             render json:{status: 'SUCCESS',message:"Saved Smartlock",data:@smartlock},status: :ok

@@ -25,6 +25,7 @@ Rails.application.routes.draw do
   resources:companies do
     get '/admin_agent', action: :admin_agent,controller: :companies, as: :admin_agent
   end 
+  
   resources:welcome
   resources:login do
   get '/index' => 'login#index',:as=> 'login_index'
@@ -55,10 +56,10 @@ Rails.application.routes.draw do
   post '/agentscreate', action: :create, controller: :agents
   get '/agents/new' => 'agents#new' 
   get '/checkin' => 'checkin#index'
-get '/checkin/new' => 'checkin#new'
-post '/checkins' => 'checkin#create'
-get '/addsubagents', action: :addagents,controller: :agents, as: :addagents
-end
+  get '/checkin/new' => 'checkin#new'
+  post '/checkins' => 'checkin#create'
+  get '/addsubagents', action: :addagents,controller: :agents, as: :addagents
+  end
 
 
 # render json:{status: 'SUCCESS' ,message:"Loaded companies",data: @companies},status: :ok

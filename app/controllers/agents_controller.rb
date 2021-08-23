@@ -16,13 +16,13 @@ class AgentsController < ApplicationController
                 flash.alert ="Sub Agent was created"
                 redirect_to companies_path
             else
-            redirect_to login_index_path
+                redirect_to login_index_path
             end
         else
 
             if @agent.role=="Non-admin"
-            flash.alert ="Sub Agent was not created"
-            redirect_to companies_path
+                flash.alert ="Sub Agent was not created"
+                redirect_to companies_path
 
             else
                 flash.alert ="Agent was not created"
@@ -36,9 +36,9 @@ class AgentsController < ApplicationController
 
     def addagents
         @agent=Agent.new()
-      end
+    end
 
-      def destroy 
+    def destroy 
         @agent = Agent.find(params[:id])
 
         if @agent.destroy
@@ -47,10 +47,4 @@ class AgentsController < ApplicationController
         end
     end 
 
-    
-
-    
-
-
-
-end
+end #end of class

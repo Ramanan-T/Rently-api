@@ -29,7 +29,7 @@ class CompaniesController < ApplicationController
 
     #get companies/company_id/admin_agent/:id  
     def admin_agent 
-        
-
+    
     end 
+    
 end

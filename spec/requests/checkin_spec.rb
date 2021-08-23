@@ -11,7 +11,8 @@ RSpec.describe "Checkins", type: :request do
     @checkin= FactoryBot.create(:checkin,:serial_code=>@code.code,:property_id=>@property.id,:renter_id=>@renter.id)
     @agent= FactoryBot.create(:agent,company_id:@company.id)
   end
-  context "Renter Property Checkin" do
+
+  # context "Renter Property Checkin" do
     it "Request Checkin with correct code" do
     sign_in @renter
     get checkin_new_path(:property_id=>@property.id)
@@ -23,15 +24,15 @@ RSpec.describe "Checkins", type: :request do
       sign_in @renter
       visit checkin_new_path(:property_id=>@property.id) 
       within("#form") do
-      fill_in 'Serial code', with:"134"
-      
-      click_button 'Request Checkin'
-    end
+        fill_in 'Serial code', with:"134"
+        
+        click_button 'Request Checkin'
+      end
       
     # expect(flash[:notice]).to match("Wrong Smartlock Serial number")
-    expect(page).to have_content"Wrong Smartlock Serial number"
+      expect(page).to have_content("Wrong Smartlock Serial number")
       end
-  end
+    # end 
 
   
     it "List of checkins for the property" do
