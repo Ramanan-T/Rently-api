@@ -15,25 +15,13 @@ class SmartlockController < ApplicationController
     end 
     
     def index
-        @smartlock= Smartlock.where(:property_id=>nil)
+        @smartlock= Smartlock.where(:company_id=>current_agent.company_id).where(:property_id=>nil)
         
     end
 
-    def edit 
-       
-        
+    
 
-    end
-
-    def update
-        @post = Smartlock.where(:property_id=>nil).first
-        @post.update(property_id :property_id)
-
-
-        
-        redirect_to smartlocks_path
-        
-    end 
+    
 
     def destroy
         @smartlock = Smartlock.find(params[:id])
@@ -49,10 +37,12 @@ class SmartlockController < ApplicationController
     #displays all the smartlocks owned by the company
     def display
         @smartlocks = Smartlock.where(:company_id => current_agent.company_id)
-        @company = Company.find(current_agent.company_id)
+        @company = current_agent.company
 
 
     end
+
+    
 
     
 end

@@ -3,7 +3,7 @@ class Agent < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-         validates :phone,
+  validates :phone,
          :numericality => true,
          :length => { :minimum => 10, :maximum => 10 }
 
@@ -27,5 +27,5 @@ class Agent < ApplicationRecord
         SendCodeMailer.with(agent:@agent).agent_credentials_email.deliver_now 
       end 
     end
-              
+
 end

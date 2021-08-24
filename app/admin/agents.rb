@@ -9,6 +9,7 @@ ActiveAdmin.register Agent do
   filter :email
   filter :name
   filter :phone
+  
   #
   # or
   #
@@ -18,7 +19,10 @@ ActiveAdmin.register Agent do
   #   permitted
   # end
   form do |f|
-    f.inputs :name,:email,:password,:role,:phone,:company_id
+    f.inputs :name,:email,:password,:role,:phone,:company
+    
+
+    
     actions
     end
   

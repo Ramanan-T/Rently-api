@@ -14,5 +14,7 @@ ActiveAdmin.register Renter do
   #   permitted << :other if params[:action] == 'create' && current_user.admin?
   #   permitted
   # end
-  
+  filter :email
+  filter :name
+  filter :phone
 end

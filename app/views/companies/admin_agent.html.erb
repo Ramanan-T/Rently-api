@@ -37,5 +37,7 @@ html, body { background: #253E7E; }
 <% if flash[:messages] %>
     <h2><%= flash[:messages] %></h2>
  <% end %>
+ <p class="notice" style="padding:10px"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
 </body>
 </html>

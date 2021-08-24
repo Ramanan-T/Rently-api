@@ -18,6 +18,7 @@ class CompaniesController < ApplicationController
         
         
         if @company.save
+            flash.alert = "Company was created"
         redirect_to company_admin_agent_path(:company_id =>@company.id)
 
         else

@@ -9,6 +9,8 @@ class CheckinController < ApplicationController
         @checkin.property_id = params[:property_id]
         @checkin.renter_id = current_renter.id
         
+
+        #use where condition to for confriming smartlock serial_num
         @property= Property.find(params[:property_id])
         var=@property.smartlock.serial_num - @checkin.serial_code
         
@@ -35,7 +37,12 @@ class CheckinController < ApplicationController
 
     def index
         if agent_signed_in?
-            @checkin = Checkin.where(:property_id => params[:property_id]).includes(:property,:renter)
+            @checkin = Checkin.where(:property_id => params[:property_id])
+            @property= Property.find(params[:property_id])
+            if @property.smartlock.blank?
+                flash.alert ="Assign a smartlock to see the checkin history"
+                redirect_to properties_path
+            end
         else
             redirect_to properties_path
         end 

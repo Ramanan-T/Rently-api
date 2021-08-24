@@ -5,10 +5,11 @@
 }
 </style>
 <%= render "layouts/navbar"%>
+<p class="notice" style="padding:10px;display:inline"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
 
-<br>
 <% if agent_signed_in? %>
-<div style="margin-left:5px">
+<div style="margin-left:15px">
 <%= link_to 'Add a new property',new_property_path, class:"btn btn-primary btn-sm"%>
 </div>
 <br>

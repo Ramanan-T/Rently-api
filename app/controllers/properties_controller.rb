@@ -76,8 +76,11 @@ class PropertiesController < ApplicationController
     #remove smartlock
 
     def remove_smartlock
-        @smartlock = Smartlock.where(:property_id => params[:property_id]).first
-        @codes = Code.where(:smartlock_id=>@smartlock.id)
+       
+        @property = Property.find(params[:property_id])
+       
+        @smartlock= @property.smartlock
+        @codes=@property.smartlock.codes
         
         if @smartlock.update(:property_id=>nil)
             @codes.each do |code|

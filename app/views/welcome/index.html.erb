@@ -19,6 +19,7 @@ color:white;
 </style>
 <% if agent_signed_in? %>
 <%= render "layouts/navbar"%>
+
 <div style="display:block;width:100%;height:300px;padding:10px;padding-left:0px;margin-top:0px;padding-top:0px;">
 <%= image_tag("logos/rental.jpg",height:500,width:1400)  %>
 <br>
@@ -61,7 +62,8 @@ color:white;
 <%if renter_signed_in?%>
 <%= render "layouts/navbar"%>
 
-
+<p class="notice" style="padding:10px"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
 <div style="display:block;width:100%;height:300px;padding:10px;padding-left:0px;margin-top:0px;padding-top:0px;">
 <%= image_tag("logos/rental.jpg",height:500,width:1400)  %>
 </div>
@@ -136,7 +138,9 @@ color:white;
 </div>
 </div>
 </div>
+
 <div class="content">
+
 <%= image_tag('hero2x.jpg', style: "height:100%; width: 100%;position:absolute;z-index:-1") %>
 
 <span style="z-index:1000;font-size:50px;color:white;padding:20px"><b>Innovative Self-Touring <br/></b></span>
@@ -146,14 +150,13 @@ color:white;
 Instantly tour a vacant property safely and securely<br> with Rently's Street to Suite™ platform
 
 </div>
-<div style="display:flex">
-<form style="padding:20px">
 
-<input type="search" name="seacrhbar" class="form-control-lg input-sm" placeholder="Enter address, zipcode or street name"> </input>
-<button class="btn btn-danger"> Self tour </button>
-
-</form>
 </div>
+
+<br>
+<br>
+<br>
+<br>
 <br>
 <br>
 
@@ -166,6 +169,10 @@ Instantly tour a vacant property safely and securely<br> with Rently's Street to
 <%= image_tag('Rently/image04.svg', style: "padding:10px") %>
 <div>
 <%end%>
+<br>
+<br>
+<p class="notice" style="padding:10px"><%= notice %></p>
+<p class="alert" style="padding:10px"><%= alert %></p>
 <%end%>
 
 </html>

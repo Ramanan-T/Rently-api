@@ -1,4 +1,6 @@
 <%= render "layouts/navbar"%>
+<p class="notice" style="padding:10px"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
 <% @property = Property.find(params[:property_id]) %>
 <div class="card" style="display:inline-block;padding:10px;margin-left:350px;margin-top:20px;">
 <b>Property Name:</b> <%= @property.property_name %> <br>

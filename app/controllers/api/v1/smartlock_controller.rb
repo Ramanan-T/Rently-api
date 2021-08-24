@@ -20,14 +20,23 @@ module Api
     
 
     def show
+
+        #check the company_id and render response 
+        if smartlock= Smartlock.find(params[:id]).company_id!=current_agent.company_id
+
+            render json:{status: 401 ,message:"Unauthorised access",:success=>false},status:401
+
+        else
         if smartlock= Smartlock.find(params[:id])
-        render json:{status: 'SUCCESS' ,message:"Loaded Smartlock Index ",data: smartlock},status: :ok
+        render json:{status: 'SUCCESS' ,message:"Loaded Individual Smartlock",data: smartlock,:success=>true},status: :ok
         else
             render json: {errors:smartlock.errors.full_messages}
         end
     end
+    end
     def index
-        smartlock= Smartlock.where(:property_id=>nil)
+        
+        smartlock= Smartlock.where(:property_id=>nil).where(:company_id=>current_agent.company_id)
 
         if smartlock==nil
             render json:{status:'SUCCESS', message:"No smartlocks were found"},status: :ok
@@ -43,7 +52,7 @@ module Api
         @post = Smartlock.where(:property_id=>nil).first
         if @post.update(:property_id  => params[:property_id])
 
-        render json:{status: 'SUCCESS' ,message:"Updated the smartlock ",data: @post},status: :ok
+        render json:{status: 'SUCCESS' ,message:"Updated the smartlock ",data: @post,:success=>true},status: :ok
 
         else
             render json:{status: 'Failure' ,message:"Smartlock not updated"},status: :ok
@@ -64,7 +73,8 @@ module Api
 
     def display
         @smartlocks = Smartlock.where(:company_id => current_agent.company_id)
-        @company = Company.find(current_agent.company_id)
+        @company = current_agent.company
+
 
         render json:{status: 'SUCCESS',message:"Smartlock under the Company",data:@smartlocks},status: :ok
 

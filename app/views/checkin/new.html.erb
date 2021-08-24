@@ -1,6 +1,8 @@
 <html>
 <%if renter_signed_in? %>
 <%= render "layouts/navbar"%>
+<p class="notice" style="padding:10px"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
 <% @property = Property.find(params[:property_id]) %>
 <div class="card" style="display:inline-block;passing:5px;margin-left:300px;margin-top:20px;">
 <h2>Request checkin for <i><%= @property.property_name %></i></h2>

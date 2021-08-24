@@ -5,7 +5,7 @@ ActiveAdmin.register Property do
   #
   # Uncomment all parameters which should be permitted for assignment
   #
-  permit_params :company_id, :property_name, :property_price, :property_desc, :property_address
+  permit_params :company_id, :property_name, :property_price, :property_desc, :property_address,:images
   #
   # or
   #
@@ -14,5 +14,13 @@ ActiveAdmin.register Property do
   #   permitted << :other if params[:action] == 'create' && current_user.admin?
   #   permitted
   # end
+
+  filter :property_name
+  filter :property_address
+  form do |f|
+    f.inputs :company, :property_name, :property_price, :property_desc, :property_address
+    f.input :images , as: :file , multiple: true
+   actions
+  end
   
 end

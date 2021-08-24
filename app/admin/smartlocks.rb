@@ -14,5 +14,7 @@ ActiveAdmin.register Smartlock do
   #   permitted << :other if params[:action] == 'create' && current_user.admin?
   #   permitted
   # end
+
+  filter :serial_num
   
 end
